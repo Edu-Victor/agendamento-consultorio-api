@@ -44,7 +44,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
       String role = jwtService.getRole(token);
 
       if (email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-        
+        // Confere se usuário ainda existe
         var userOpt = userRepository.findByEmail(email);
         if (userOpt.isEmpty()) {
           filterChain.doFilter(request, response);
