@@ -16,10 +16,10 @@ public class Paciente {
   private Long id;
 
   @Column(nullable = false)
-  private String name;
+  private String nome;
 
   @Column(nullable = false)
-  private Integer age;
+  private Integer idade;
 
   @Column(nullable = false, length = 8)
   private String cep;
