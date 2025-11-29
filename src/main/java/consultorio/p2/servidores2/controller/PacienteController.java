@@ -24,7 +24,6 @@ public class PacienteController {
     this.service = service;
   }
 
- // ADMIN e USER podem visualizar
   @GetMapping
   @Operation(summary = "Listar paciente", description = "Retorna uma lista de pacientes cadastrados.")
   public List<PacienteResponse> list() {
@@ -37,7 +36,6 @@ public class PacienteController {
     return service.get(id);
   }
 
-// Só ADMIN cria
   @PreAuthorize("hasRole('ADMIN')")
   @PostMapping
   @Operation(summary = "Cadastrar paciente", description = "Cria um novo paciente e retorna os dados cadastrados (Role admin necessária).")
@@ -45,7 +43,6 @@ public class PacienteController {
     return service.create(req);
   }
 
-// Só ADMIN edita
   @PreAuthorize("hasRole('ADMIN')")
   @PutMapping("/{id}")
   @Operation(summary = "Atualizar paciente", description = "Atualiza os dados de um paciente pelo ID e retorna o registro atualizado (Role admin necessária).")
@@ -53,7 +50,6 @@ public class PacienteController {
     return service.update(id, req);
   }
 
-// Só ADMIN deleta
   @PreAuthorize("hasRole('ADMIN')")
   @DeleteMapping("/{id}")
   @Operation(summary = "Remover paciente", description = "Remove um paciente pelo ID (Role admin necessária).")

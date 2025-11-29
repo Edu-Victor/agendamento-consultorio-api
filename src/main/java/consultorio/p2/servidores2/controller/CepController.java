@@ -20,7 +20,6 @@ public class CepController {
     this.service = service;
   }
 
-// Só ADMIN precisa usar isso na tela de cadastro
   @PreAuthorize("hasRole('ADMIN')")
   @GetMapping("/{cep}")
   @Operation(summary = "Consultar CEP", description = "Retorna um JSON dos dados de endereço associado ao CEP informado (Role admin necessária).")

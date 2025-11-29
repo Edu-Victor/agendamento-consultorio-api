@@ -24,12 +24,11 @@ public class Paciente {
   @Column(nullable = false, length = 8)
   private String cep;
 
-  // Endereço - recebe viaCep
-  private String rua;//logradouro
-  private String bairro;//bairro
-  private String cidade;//localidade
-  private String estado;//uf
-  private String complemento;//complemento
+  private String rua;
+  private String bairro;
+  private String cidade;
+  private String estado;
+  private String complemento;
 
   @Column(columnDefinition = "text")
   private String observacoes;

@@ -24,14 +24,12 @@ public class RelatorioController {
     this.service = service;
   }
 
-  // listagem por paciente (ADMIN/USER)
   @GetMapping("/api/pacientes/{pacienteId}/reports")
   @Operation(summary = "Listar relatórios do paciente", description = "Retorna os relatórios referente ao paciente específico pelo ID.")
   public List<RelatorioResponse> listByPaciente(@PathVariable Long pacienteId) {
     return service.listByPaciente(pacienteId);
   }
 
-  // criar relatório (ADMIN)
   @PreAuthorize("hasRole('ADMIN')")
   @PostMapping("/api/pacientes/{pacienteId}/reports")
   @Operation(summary = "Cadastrar relatório do paciente", description = "Cria um novo relatório associado ao paciente informado pelo ID (Role admin necessária).")
@@ -39,7 +37,6 @@ public class RelatorioController {
     return service.create(pacienteId, req);
   }
 
-  // editar relatório (ADMIN)
   @PreAuthorize("hasRole('ADMIN')")
   @PutMapping("/api/reports/{reportId}")
   @Operation(summary = "Atualizar relatório", description = "atualiza os dados do relatório informado pelo ID e retorna o registro atualizado (Role admin necessária).")
@@ -47,7 +44,6 @@ public class RelatorioController {
     return service.update(reportId, req);
   }
 
-  // apagar relatório (ADMIN)
   @PreAuthorize("hasRole('ADMIN')")
   @DeleteMapping("/api/reports/{reportId}")
   @Operation(summary = "Remover relatório", description = "Remove um relatório pelo ID (Role admin necessária).")

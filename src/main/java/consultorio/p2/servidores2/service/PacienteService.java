@@ -43,13 +43,11 @@ public class PacienteService {
         .observacoes(req.observacoes())
         .build();
     return toResponse(repo.save(p));
-
   }
 
   @Transactional
   public PacienteResponse update(Long id, PacienteRequest req) {
     Paciente p = repo.findById(id).orElseThrow(() -> new NotFoundException("Paciente não encontrado"));
-
     p.setNome(req.nome());
     p.setIdade(req.idade());
     p.setCep(req.cep());
@@ -59,7 +57,6 @@ public class PacienteService {
     p.setEstado(req.estado());
     p.setComplemento(req.complemento());
     p.setObservacoes(req.observacoes());
-
     return toResponse(p);
   }
 

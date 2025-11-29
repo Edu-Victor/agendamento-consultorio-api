@@ -36,13 +36,13 @@ public class JwtService {
         .claims(Map.of("role", role))
         .issuedAt(Date.from(now))
         .expiration(Date.from(exp))
-        .signWith(key, Jwts.SIG.HS256) // recebo a key aqui e passo pela hash para a assinatura.
+        .signWith(key, Jwts.SIG.HS256)
         .compact();
   }
 
   public Jws<Claims> parse(String token) {
     return Jwts.parser()
-        .verifyWith(key) // a secretkey vai direto, sem precisar passar por hash/assinatura.
+        .verifyWith(key)
         .build()
         .parseSignedClaims(token);
   }

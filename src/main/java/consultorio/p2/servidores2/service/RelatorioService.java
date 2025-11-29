@@ -41,19 +41,16 @@ public class RelatorioService {
         .humor(req.humor())
         .observacoes(req.observacoes())
         .build();
-
     return toResponse(reportRepo.save(r));
   }
 
   @Transactional
   public RelatorioResponse update(Long reportId, RelatorioRequest req) {
     Relatorios r = reportRepo.findById(reportId).orElseThrow(() -> new NotFoundException("Relatório não encontrado"));
-
     r.setData(req.data());
     r.setTipoSessao(req.tipoSessao());
     r.setHumor(req.humor());
     r.setObservacoes(req.observacoes());
-
     return toResponse(r);
   }
 

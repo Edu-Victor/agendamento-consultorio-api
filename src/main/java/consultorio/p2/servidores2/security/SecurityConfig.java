@@ -35,10 +35,6 @@ public class SecurityConfig {
               "/swagger-ui.html",
               "/swagger-ui/**",
               "/v3/api-docs/**"
-              //===========liberações para teste============
-              // "/api/cep/**"
-              // "/api/pacientes/**"
-              // "/api/reports/**"
           ).permitAll()
           .anyRequest().authenticated()
       )

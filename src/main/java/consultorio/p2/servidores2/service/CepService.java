@@ -12,7 +12,6 @@ public class CepService {
   private final RestClient restClient = RestClient.create();
 
   public CepResponse fetchCep(String cep) {
-    // enviar 8 digitos para a api, qualquer coisa alem disso retornar exception
     return restClient.get()
         .uri("https://viacep.com.br/ws/{cep}/json/", cep)
         .retrieve()
