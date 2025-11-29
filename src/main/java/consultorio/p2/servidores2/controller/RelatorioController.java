@@ -15,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/reports")
+@Tag(name = "Relatório", description = "Operações de criação, consulta e manutenção de relatórios vinculados a pacientes.")
 public class RelatorioController {
 
   private final RelatorioService service;
@@ -25,6 +26,7 @@ public class RelatorioController {
 
   // listagem por paciente (ADMIN/USER)
   @GetMapping("/api/pacientes/{pacienteId}/reports")
+  @Operation(summary = "Listar relatórios do paciente", description = "Retorna os relatórios referente ao paciente específico pelo ID.")
   public List<RelatorioResponse> listByPaciente(@PathVariable Long pacienteId) {
     return service.listByPaciente(pacienteId);
   }
@@ -32,6 +34,7 @@ public class RelatorioController {
   // criar relatório (ADMIN)
   @PreAuthorize("hasRole('ADMIN')")
   @PostMapping("/api/pacientes/{pacienteId}/reports")
+  @Operation(summary = "Cadastrar relatório do paciente", description = "Cria um novo relatório associado ao paciente informado pelo ID (Role admin necessária).")
   public RelatorioResponse create(@PathVariable Long pacienteId, @RequestBody @Valid RelatorioRequest req) {
     return service.create(pacienteId, req);
   }
@@ -39,6 +42,7 @@ public class RelatorioController {
   // editar relatório (ADMIN)
   @PreAuthorize("hasRole('ADMIN')")
   @PutMapping("/api/reports/{reportId}")
+  @Operation(summary = "Atualizar relatório", description = "atualiza os dados do relatório informado pelo ID e retorna o registro atualizado (Role admin necessária).")
   public RelatorioResponse update(@PathVariable Long reportId, @RequestBody @Valid RelatorioRequest req) {
     return service.update(reportId, req);
   }
@@ -46,6 +50,7 @@ public class RelatorioController {
   // apagar relatório (ADMIN)
   @PreAuthorize("hasRole('ADMIN')")
   @DeleteMapping("/api/reports/{reportId}")
+  @Operation(summary = "Remover relatório", description = "Remove um relatório pelo ID (Role admin necessária).")
   public void delete(@PathVariable Long reportId) {
     service.delete(reportId);
   }

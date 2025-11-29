@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/api/cep")
+@Tag(name = "Cep", description = "Consulta de endereço por CEP (ViaCEP).")
 public class CepController {
 
   private final CepService service;
@@ -22,6 +23,7 @@ public class CepController {
 // Só ADMIN precisa usar isso na tela de cadastro
   @PreAuthorize("hasRole('ADMIN')")
   @GetMapping("/{cep}")
+  @Operation(summary = "Consultar CEP", description = "Retorna um JSON dos dados de endereço associado ao CEP informado (Role admin necessária).")
   public CepResponse getCep(@PathVariable String cep) {
     return service.fetchCep(cep);
   }

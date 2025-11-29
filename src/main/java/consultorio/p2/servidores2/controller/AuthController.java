@@ -20,6 +20,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/auth")
+@Tag(name = "Autenticações", description = "Endpoints para gerenciamento de autenticações.")
 public class AuthController {
 
   private final UsuarioService userService;
@@ -36,12 +37,14 @@ public class AuthController {
   }
 
   @PostMapping("/register")
+  @Operation(summary = "Cadastrar usuário", description = "Cria um novo usuário no sistema e retorna os dados básicos do usuário criado (id, email e role).")
   public ResponseEntity<?> register(@RequestBody @Valid RegisterRequest req) {
     Usuarios u = userService.register(req, false);
     return ResponseEntity.ok().body(java.util.Map.of("id", u.getId(), "email", u.getEmail(), "role", u.getRole().name()));
   }
 
   @PostMapping("/login")
+  @Operation(summary = "Autenticar usuário", description = "Valida as credenciais e, em caso de sucesso, retorna um token JWT e role do usuário para autenticação nas rotas protegidas.")
   public ResponseEntity<AuthResponse> login(@RequestBody @Valid LoginRequest req) {
     Usuarios u = userRepo.findByEmail(req.email())
         .orElseThrow(() -> new BadCredentialsException("Credenciais inválidas"));
