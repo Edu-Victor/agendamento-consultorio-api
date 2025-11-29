@@ -13,7 +13,10 @@ public class CorsConfig {
   @Bean
   public CorsConfigurationSource corsConfigurationSource() {
     CorsConfiguration cors = new CorsConfiguration();
-    cors.setAllowedOrigins(List.of("http://localhost:5173"));
+    cors.setAllowedOrigins(List.of(
+      "http://localhost:5173",
+      "https://agendamento-consultorio-web.vercel.app"
+    ));
     cors.setAllowedMethods(List.of("GET","POST","PUT","DELETE","OPTIONS"));
     cors.setAllowedHeaders(List.of("*"));
     cors.setAllowCredentials(true);
