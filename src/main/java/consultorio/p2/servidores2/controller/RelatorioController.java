@@ -14,7 +14,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/reports")
 @Tag(name = "Relatório", description = "Operações de criação, consulta e manutenção de relatórios vinculados a pacientes.")
 public class RelatorioController {
 
